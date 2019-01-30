@@ -9,7 +9,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-             <code>Concishare CICD Pipeline</code>
+             <code>Concishare CICD Pipeline with AWS beanstalk</code>
           </p>
           <a
             className="App-link"
