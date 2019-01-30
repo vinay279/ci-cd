@@ -1,0 +1,10 @@
+FROM node:alpine 
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY . .
+CMD [ "npm", "run", "start"]
+
+# after running the npm run start command
+#we exicuted this command to run test and check.
+#docker run -it frontenddevimage:latest npm run test^C

@@ -1,0 +1,29 @@
+version: '3'
+services:
+  web:
+     build:
+        context: . # pwd from local
+        dockerfile: Dockerfile.dev
+     ports:
+        - "3000:3000"
+     volumes:
+         - /app/node_modules # dont mess with this in container
+         - .:/app  # mapping files 
+
+   # we run only one service i.e start only 
+     # and we are not having run test 
+     # so we have two options to run test 
+     # 1} exec to container after docker-compose
+     # 2} create 2nd service in yml this is below
+     # but it is not the properway
+  
+  tests:
+    build: 
+       context: .
+       dockerfile : Dockerfile.dev
+    volumes:
+        - /app/node_modules
+        - .:/app
+    command: [ "npm" ,"run", "test"]
+
+  
