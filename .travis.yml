@@ -1,3 +1,6 @@
+## this is the travis job created for the automatic 
+# buiding docker images and deploy app to aws beanstalk
+
 # sudo required anytime we use docker client
 # and we need superuser permission
 sudo : required
@@ -12,6 +15,23 @@ script:
   # and exited to CLI using -- -- coverage
   # -- --coverage tells us how many lines of code
   # function present in the project
+  # after this build trigger automatically 
+  # and run the travis job
   - docker run vinay27/ci-cd npm run test -- --coverage 
 
-# now automatic build creation
+deploy: 
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "docker-react-frontend" 
+  env: "DockerReactFrontend-env"
+  bucket_name: elasticbeanstalk-ap-southeast-1-089662159659
+  # initially we dont have any any path so we give
+  # same name as our app
+  # after deploy the folders are created in elasticbean
+  bucket_path: "docker-react-frontend"
+  on: 
+    branch: master
+  access_key_id: "$ACCESSKEY"
+  secret_access_key:
+    secure: "$SECRETKEY"
+    # this keys are added in travis -> setting -> envvar
