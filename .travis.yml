@@ -1,0 +1,17 @@
+# sudo required anytime we use docker client
+# and we need superuser permission
+sudo : required
+services:
+  - docker
+# tell travis to build image for further process
+before_install:
+  - docker build -t vinay27/ci-cd -f Dockerfile.dev .
+
+script:
+  # running test using docker
+  # and exited to CLI using -- -- coverage
+  # -- --coverage tells us how many lines of code
+  # function present in the project
+  - docker run vinay27/ci-cd npm run test -- --coverage 
+
+# now automatic build creation

@@ -17,7 +17,7 @@ services:
      # 2} create 2nd service in yml this is below
      # but it is not the properway
   
-  tests:
+  tests:rm
     build: 
        context: .
        dockerfile : Dockerfile.dev
